@@ -1,0 +1,127 @@
+{
+    "01-01-07": {
+        "fault": "Air Intake Filter Saturation",
+        "severity": "Maintenance",
+        "description": "The high-flow air filter exhibits complete saturation with oil mist, salt particles, and combustion debris, resulting in a 40-60% reduction in airflow capacity. Visual inspection reveals a dark brown/black discoloration across the filter media with possible clogging of micro-pores. Engine performance degrades with rough idling at 800-900 RPM (normal: 1200 RPM) and increased exhaust smoke opacity. The restriction causes the turbocharger to work harder, producing a higher-pitched whining sound during acceleration phases.",
+        "part_code": "ENG-FL-01",
+        "part_name": "High-Flow Air Filter",
+        "common_tools": [
+            "Digital Manometer",
+            "Lockout/Tagout Kit",
+            "Filter Housing Wrench Set",
+            "Compressed Air Gun",
+            "Torque Wrench (50-150 Nm)"
+        ],
+        "detailed_steps": [
+            "Execute complete engine lockout/tagout procedure and allow engine to cool below 60\u00b0C before beginning work",
+            "Disconnect negative battery terminal and remove engine cover panels to access air intake housing",
+            "Use digital manometer to measure differential pressure across filter (should be <2.5 kPa when clean)",
+            "Remove air intake housing bolts using filter housing wrench set, noting bolt torque specifications of 85 Nm",
+            "Extract saturated filter element ENG-FL-01 and inspect housing for debris accumulation or damage",
+            "Install new High-Flow Air Filter ensuring proper seating against housing gasket with no air gaps",
+            "Reassemble housing with bolts torqued to specification (85 Nm) in cross-pattern sequence",
+            "Perform post-installation pressure test and verify engine idle returns to 1200 RPM \u00b1 50 RPM"
+        ],
+        "quick_fix": "LOCKOUT -> REMOVE HOUSING -> EXTRACT FILTER -> INSTALL NEW ENG-FL-01 -> TORQUE BOLTS -> TEST PRESSURE"
+    },
+    "01-02-07": {
+        "fault": "Spark Plug Carbon Buildup",
+        "severity": "Maintenance",
+        "description": "Excessive carbon deposits accumulate on spark plug electrodes, creating a thick black coating that reduces spark intensity and causes misfiring. The buildup appears as a sooty, dry carbon layer approximately 1-2mm thick on the electrode surfaces. Engine exhibits irregular firing patterns with audible misfiring every 3-5 seconds during idle, accompanied by unburned fuel odor in exhaust gases. Cylinder head temperature increases 15-20\u00b0C above normal operating range due to incomplete combustion cycles.",
+        "part_code": "ENG-SP-02",
+        "part_name": "Iridium Spark Plug Set",
+        "common_tools": [
+            "Spark Plug Socket Set",
+            "Torque Wrench (25-35 Nm)",
+            "Feeler Gauge Set",
+            "Anti-Seize Compound",
+            "Compressed Air Gun"
+        ],
+        "detailed_steps": [
+            "Implement lockout/tagout procedure and allow engine to cool to ambient temperature (minimum 2-hour cooldown)",
+            "Remove ignition coil assemblies and disconnect spark plug wire harnesses from each cylinder",
+            "Use compressed air to clear debris from spark plug wells before removal to prevent contamination",
+            "Remove old spark plugs using appropriate spark plug socket, noting electrode gap measurements with feeler gauge",
+            "Apply thin layer of anti-seize compound to new ENG-SP-02 iridium plug threads (avoid electrode contact)",
+            "Install new spark plugs hand-tight plus 1/2 turn, then torque to 30 Nm using calibrated torque wrench",
+            "Reconnect ignition coils and wire harnesses ensuring proper cylinder firing order sequence",
+            "Perform engine start test and verify smooth idle at 1200 RPM with no misfiring detected"
+        ],
+        "quick_fix": "LOCKOUT -> REMOVE COILS -> EXTRACT OLD PLUGS -> INSTALL ENG-SP-02 -> TORQUE 30NM -> RECONNECT -> TEST"
+    },
+    "01-03-05": {
+        "fault": "Fuel Injector Timing Mismatch",
+        "severity": "Serious",
+        "description": "Electronic fuel injector timing deviates from optimal injection point by 5-8 degrees, causing incomplete fuel atomization and combustion knock. The malfunction produces a distinct metallic knocking sound during power strokes, particularly under load conditions above 75% engine capacity. Fuel consumption increases by 15-25% while power output decreases proportionally. Exhaust gas temperature rises 40-60\u00b0C above normal, and unburned hydrocarbon emissions increase significantly. The ECU may log multiple timing fault codes as the injector fails to respond within the required 2-millisecond window.",
+        "part_code": "ENG-IN-05",
+        "part_name": "Electronic Injector Valve",
+        "common_tools": [
+            "Fuel System Pressure Tester",
+            "Electronic Timing Light",
+            "Fuel Line Disconnect Tools",
+            "Digital Multimeter",
+            "Lockout/Tagout Kit"
+        ],
+        "detailed_steps": [
+            "Execute complete fuel system lockout/tagout and depressurize fuel rails to 0 PSI using pressure relief valve",
+            "Disconnect fuel rail and electrical connections to affected injector, marking wire positions for reassembly",
+            "Use fuel line disconnect tools to remove high-pressure fuel lines without damaging quick-connect fittings",
+            "Remove defective injector valve and inspect fuel rail seat for damage or debris accumulation",
+            "Install new ENG-IN-05 Electronic Injector Valve with new O-rings torqued to 45 Nm specification",
+            "Reconnect fuel lines and electrical harnesses, ensuring proper polarity and connection integrity",
+            "Pressurize fuel system to operating pressure (350 PSI) and check for leaks using pressure tester",
+            "Use electronic timing light to verify injection timing matches ECU specifications within \u00b12 degrees"
+        ],
+        "quick_fix": "LOCKOUT -> DEPRESSURIZE FUEL -> DISCONNECT LINES -> REPLACE ENG-IN-05 -> RECONNECT -> PRESSURE TEST -> TIMING CHECK"
+    },
+    "01-01-05": {
+        "fault": "Coolant Pump Bearing Wear",
+        "severity": "Serious",
+        "description": "The sealed roller bearing in the coolant pump exhibits advanced wear patterns with metal-on-metal contact producing a grinding noise audible from 10-15 meters away. Bearing clearance exceeds specification by 0.3-0.5mm, causing pump shaft wobble and reduced coolant flow rate from 450 L/min to approximately 280 L/min. Metallic debris appears in coolant system, and pump housing temperature increases 25-35\u00b0C above normal. Vibration amplitude measures 8-12mm/s (normal: <2mm/s) indicating imminent bearing failure and potential pump seizure.",
+        "part_code": "BRG-CP-11",
+        "part_name": "Sealed Roller Bearing",
+        "common_tools": [
+            "Bearing Puller Set",
+            "Hydraulic Press",
+            "Dial Indicator",
+            "Coolant System Flush Kit",
+            "Torque Wrench (120-180 Nm)"
+        ],
+        "detailed_steps": [
+            "Implement complete cooling system lockout/tagout and drain coolant to level below pump housing",
+            "Disconnect coolant lines and remove pump assembly from engine block using appropriate lifting equipment",
+            "Disassemble pump housing and use bearing puller set to extract worn BRG-CP-11 bearing from shaft",
+            "Inspect pump shaft for scoring or damage, measuring runout with dial indicator (must be <0.05mm)",
+            "Use hydraulic press to install new Sealed Roller Bearing ensuring proper seating depth of 15.2mm",
+            "Reassemble pump housing with new gaskets and torque bolts to 150 Nm in specified sequence",
+            "Reinstall pump assembly and refill cooling system, bleeding air pockets through designated bleed valves",
+            "Perform operational test verifying coolant flow rate returns to 450 L/min \u00b1 25 L/min specification"
+        ],
+        "quick_fix": "LOCKOUT -> DRAIN COOLANT -> REMOVE PUMP -> EXTRACT BEARING -> PRESS NEW BRG-CP-11 -> REASSEMBLE -> TEST FLOW"
+    },
+    "01-02-99": {
+        "fault": "Piston Rod Fracture",
+        "severity": "Catastrophic",
+        "description": "Complete structural failure of the piston rod assembly with visible crack propagation through the connecting rod forging, typically occurring at the small end bushing interface. The fracture produces catastrophic engine noise including violent knocking, metal-on-metal impacts, and potential secondary damage to cylinder walls and crankshaft. Engine immediately loses compression in the affected cylinder, with compression pressure dropping from 180 PSI to <20 PSI. Metallic debris contaminates the oil system, and severe vibration (>25mm/s) occurs throughout the engine block. Immediate shutdown is mandatory to prevent complete engine destruction.",
+        "part_code": "ENG-PR-99",
+        "part_name": "Full Piston/Rod Assembly",
+        "common_tools": [
+            "Engine Hoist (5-ton capacity)",
+            "Cylinder Bore Gauge",
+            "Plastigage Kit",
+            "Ring Compressor Tool",
+            "Precision Torque Wrench (200-400 Nm)"
+        ],
+        "detailed_steps": [
+            "Execute emergency engine shutdown and complete lockout/tagout, allowing 4-hour minimum cooldown period",
+            "Remove cylinder head assembly and oil pan to access damaged piston/rod assembly from above and below",
+            "Use engine hoist to carefully extract fractured ENG-PR-99 components, inspecting for secondary damage to block",
+            "Measure cylinder bore dimensions with bore gauge to verify roundness within 0.025mm tolerance",
+            "Install new Full Piston/Rod Assembly using ring compressor tool and verify bearing clearances with Plastigage",
+            "Torque connecting rod bolts to 320 Nm specification using precision torque wrench in two-stage sequence",
+            "Reassemble engine components with new gaskets and perform complete oil system flush to remove debris",
+            "Conduct comprehensive engine test including compression test (target: 180 PSI \u00b1 10 PSI) and vibration analysis"
+        ],
+        "quick_fix": "EMERGENCY SHUTDOWN -> LOCKOUT -> REMOVE HEAD/PAN -> EXTRACT DAMAGED PARTS -> INSTALL ENG-PR-99 -> TORQUE 320NM -> FLUSH OIL -> COMPRESSION TEST"
+    }
+}

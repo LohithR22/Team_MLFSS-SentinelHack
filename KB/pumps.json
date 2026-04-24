@@ -1,0 +1,127 @@
+{
+    "02-01-07": {
+        "fault": "Mechanical Seal Lubrication",
+        "severity": "Maintenance",
+        "description": "Mechanical seal faces exhibit dry running characteristics with visible scoring marks and white residue buildup. Audible squealing or grinding noise emanates from the seal chamber during operation. Seal faces show signs of thermal stress with blue discoloration on contact surfaces. Root cause is insufficient lubrication film between rotating and stationary seal faces, leading to increased friction coefficient and accelerated wear patterns.",
+        "part_code": "LUB-GS-01",
+        "part_name": "Grade-A Lithium Grease",
+        "common_tools": [
+            "Digital Torque Wrench",
+            "Lockout/Tagout Kit",
+            "Grease Gun with Pressure Gauge",
+            "Seal Face Inspection Mirror",
+            "Precision Feeler Gauges"
+        ],
+        "detailed_steps": [
+            "Execute complete lockout/tagout procedure and verify zero energy state with multimeter readings",
+            "Depressurize seal chamber to atmospheric pressure and drain residual fluids into containment vessel",
+            "Remove seal chamber access cover using 15-20 ft-lbs torque specification in reverse sequence",
+            "Inspect seal faces for scoring depth using 0.001-inch precision feeler gauges - reject if >0.003 inches",
+            "Clean seal chamber with lint-free cloth and approved solvent, ensuring no particulate contamination",
+            "Apply Grade-A Lithium Grease to seal faces using calibrated grease gun at 50-75 PSI pressure",
+            "Reassemble seal chamber with new O-rings torqued to 18-22 ft-lbs in star pattern sequence",
+            "Perform leak test at 1.5x operating pressure for minimum 10-minute duration before startup"
+        ],
+        "quick_fix": "LOCKOUT -> DEPRESSURIZE -> REMOVE COVER -> CLEAN FACES -> APPLY GREASE -> REASSEMBLE -> PRESSURE TEST"
+    },
+    "02-02-07": {
+        "fault": "Impeller Debris Clearance",
+        "severity": "Maintenance",
+        "description": "Impeller vanes show accumulation of fibrous material, scale deposits, and foreign objects causing flow restriction. Pump exhibits reduced discharge pressure by 15-25% with increased amperage draw. Visible debris wedged between impeller vanes creates unbalanced rotating assembly with mild vibration at 1x running speed. Root cause is inadequate suction straining allowing particulate matter larger than 0.5mm to enter pump casing.",
+        "part_code": "MNT-BR-07",
+        "part_name": "Nylon Cleaning Brush",
+        "common_tools": [
+            "Lockout/Tagout Kit",
+            "Pump Casing Lifting Sling",
+            "High-Pressure Water Hose",
+            "LED Inspection Light",
+            "Non-Sparking Bronze Scraper"
+        ],
+        "detailed_steps": [
+            "Implement lockout/tagout protocol and isolate pump from electrical and process systems",
+            "Drain pump casing completely and remove suction/discharge flanges using proper lifting equipment",
+            "Extract impeller assembly using appropriate puller tools to prevent shaft damage",
+            "Inspect each impeller vane for debris accumulation and measure clearances with precision gauges",
+            "Remove debris using nylon cleaning brush in radial direction from hub to tip avoiding vane damage",
+            "Flush impeller with high-pressure water at 100-150 PSI to remove remaining particulate matter",
+            "Verify impeller balance within 0.1 oz-in tolerance using dynamic balancing equipment if available",
+            "Reassemble pump with new gaskets and torque bolts to manufacturer specifications in proper sequence"
+        ],
+        "quick_fix": "LOCKOUT -> DRAIN -> REMOVE IMPELLER -> BRUSH CLEAN -> WATER FLUSH -> BALANCE CHECK -> REASSEMBLE"
+    },
+    "02-03-05": {
+        "fault": "Shaft Misalignment (Vibration)",
+        "severity": "Serious",
+        "description": "Pump exhibits excessive vibration levels >7.5 mm/s RMS in radial direction with prominent 1x and 2x running frequency components. Coupling shows uneven wear patterns and rubber element deterioration. Bearing temperatures elevated 15-20\u00b0C above normal operating range. Audible coupling noise during startup and shutdown sequences. Root cause is angular and/or parallel misalignment exceeding 0.002 inches per inch of coupling span, creating dynamic forces transmitted through drivetrain.",
+        "part_code": "SHM-AL-05",
+        "part_name": "Laser Alignment Shims",
+        "common_tools": [
+            "Laser Alignment Tool",
+            "Precision Dial Indicators",
+            "Hydraulic Jack System",
+            "Digital Torque Wrench",
+            "Lockout/Tagout Kit"
+        ],
+        "detailed_steps": [
+            "Execute lockout/tagout procedure and allow equipment to reach ambient temperature for thermal stability",
+            "Install laser alignment system on pump and motor shafts ensuring proper sensor positioning",
+            "Measure existing misalignment in both horizontal and vertical planes recording all readings",
+            "Calculate required shim thickness using formula: Shim = (Misalignment \u00d7 Distance) / Coupling Span",
+            "Loosen motor mounting bolts and use hydraulic jacks to achieve precise positioning within 0.001 inches",
+            "Install laser alignment shims under motor feet maintaining parallel contact surfaces",
+            "Retorque mounting bolts to 85-95 ft-lbs in cross pattern while monitoring alignment readings",
+            "Perform final verification with alignment tolerance <0.002 inches total indicator reading"
+        ],
+        "quick_fix": "LOCKOUT -> LASER SETUP -> MEASURE MISALIGNMENT -> CALCULATE SHIMS -> JACK MOTOR -> INSTALL SHIMS -> RETORQUE"
+    },
+    "02-01-05": {
+        "fault": "Cavitation-Induced Pitting",
+        "severity": "Serious",
+        "description": "Impeller surfaces exhibit characteristic cavitation damage with small crater-like pits concentrated on vane leading edges and eye area. Metallic erosion particles present in discharge fluid with visible pitting depth 0.005-0.015 inches. Pump produces crackling or popping sounds resembling gravel flow during operation. Net Positive Suction Head Available (NPSHA) insufficient compared to Net Positive Suction Head Required (NPSHR) creating vapor bubble formation and violent collapse.",
+        "part_code": "PMP-IM-05",
+        "part_name": "Hardened Impeller Nut",
+        "common_tools": [
+            "Impeller Puller Set",
+            "Torque Multiplier Tool",
+            "Thread Locking Compound",
+            "Surface Roughness Gauge",
+            "Lockout/Tagout Kit"
+        ],
+        "detailed_steps": [
+            "Implement complete lockout/tagout and drain system to eliminate residual pressure and fluid",
+            "Remove pump casing and extract damaged impeller using appropriate puller to prevent shaft scoring",
+            "Inspect impeller nut threads for cavitation damage and erosion using thread pitch gauge",
+            "Measure pitting depth on impeller surfaces using surface roughness gauge - replace if >0.020 inches",
+            "Clean impeller shaft threads with wire brush and apply thread locking compound to new nut",
+            "Install hardened impeller nut using torque multiplier tool to achieve 150-175 ft-lbs specification",
+            "Verify impeller axial positioning within 0.005 inches of design clearance using depth micrometer",
+            "Reassemble pump and verify NPSHA >1.1 \u00d7 NPSHR before returning to service"
+        ],
+        "quick_fix": "LOCKOUT -> REMOVE IMPELLER -> INSPECT DAMAGE -> CLEAN THREADS -> INSTALL HARDENED NUT -> TORQUE -> VERIFY CLEARANCE"
+    },
+    "02-02-99": {
+        "fault": "Main Drive Shaft Shear",
+        "severity": "Catastrophic",
+        "description": "Complete fracture of main drive shaft resulting in immediate pump shutdown and potential secondary damage to casing and impeller. Fracture surface exhibits classic fatigue crack propagation patterns with beach marks indicating cyclic stress concentration. Shaft failure typically occurs at keyway stress concentration or bearing journal transition. Catastrophic failure mode with loud metallic impact noise and immediate loss of discharge pressure. Root cause involves exceeding ultimate tensile strength due to combined torsional and bending stresses from misalignment or hydraulic overload.",
+        "part_code": "PMP-DS-99",
+        "part_name": "Carbon Steel Drive Shaft",
+        "common_tools": [
+            "Overhead Crane with 5-Ton Capacity",
+            "Hydraulic Press Assembly",
+            "Shaft Alignment Mandrel",
+            "Magnetic Particle Inspection Kit",
+            "Precision Measuring Instruments"
+        ],
+        "detailed_steps": [
+            "Establish safety perimeter and implement lockout/tagout with additional mechanical isolation devices",
+            "Completely disassemble pump using overhead crane for major component handling and removal",
+            "Extract fractured shaft pieces and inspect casing for secondary damage using borescope examination",
+            "Perform magnetic particle inspection on all related components to detect stress cracks",
+            "Machine new carbon steel drive shaft to precise dimensional tolerances \u00b10.0005 inches",
+            "Install new shaft using hydraulic press with proper support fixtures to prevent deflection",
+            "Verify shaft runout <0.001 inches TIR using precision dial indicators at multiple locations",
+            "Perform complete pump reassembly with new bearings, seals, and gaskets followed by comprehensive testing"
+        ],
+        "quick_fix": "LOCKOUT -> CRANE DISASSEMBLY -> REMOVE SHAFT -> INSPECT DAMAGE -> MACHINE NEW SHAFT -> PRESS INSTALL -> COMPLETE REBUILD"
+    }
+}

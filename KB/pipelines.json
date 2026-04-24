@@ -1,0 +1,127 @@
+{
+    "03-01-07": {
+        "fault": "Flange Gasket Seepage",
+        "severity": "Maintenance",
+        "description": "Minor hydrocarbon weeping observed at flange interface, typically presenting as dark staining or wet spots around bolt patterns. Often accompanied by slight petroleum odor and pressure drop readings of 2-5 PSI below nominal. Root cause is gasket compression set due to thermal cycling, bolt relaxation, or improper initial torque sequence during installation.",
+        "part_code": "GSK-VT-01",
+        "part_name": "Viton O-Ring Gasket",
+        "common_tools": [
+            "Digital Torque Wrench",
+            "Lockout/Tagout Kit",
+            "Flange Spreader Tool",
+            "Gasket Scraper Set",
+            "Thread Compound Applicator"
+        ],
+        "detailed_steps": [
+            "Execute full system lockout/tagout procedure and verify zero energy state with portable gas detector",
+            "Depressurize line section to 0 PSIG and drain residual fluids into approved containment vessel",
+            "Remove flange bolts in cross-pattern sequence using digital torque wrench, recording bolt condition",
+            "Separate flange faces using hydraulic spreader tool, maintaining 0.25-inch minimum gap",
+            "Remove deteriorated gasket material and clean flange surfaces to 125 RMS finish using approved solvent",
+            "Install new GSK-VT-01 gasket ensuring proper groove seating and orientation alignment",
+            "Reassemble flange with bolts torqued to 85 ft-lbs in star pattern sequence per API 6A standard",
+            "Pressure test to 1.5x operating pressure for 30 minutes minimum, monitoring for leakage"
+        ],
+        "quick_fix": "LOCKOUT -> DEPRESSURIZE -> REMOVE BOLTS -> REPLACE GASKET -> TORQUE -> PRESSURE TEST"
+    },
+    "03-02-07": {
+        "fault": "External Corrosion Spotting",
+        "severity": "Maintenance",
+        "description": "Surface oxidation manifesting as reddish-brown spots or patches on external pipe surfaces, typically 2-10mm diameter. Metal thickness loss generally <10% of wall thickness. Often occurs at coating holidays, weld heat-affected zones, or areas with compromised cathodic protection. Root cause is electrochemical reaction between steel substrate and atmospheric moisture/oxygen in presence of chlorides.",
+        "part_code": "PNT-ZN-07",
+        "part_name": "Zinc-Rich Cold Galvanize",
+        "common_tools": [
+            "Ultrasonic Thickness Gauge",
+            "Wire Brush Set",
+            "Sandblasting Equipment",
+            "Surface Profile Gauge",
+            "Spray Application Gun"
+        ],
+        "detailed_steps": [
+            "Measure remaining wall thickness using ultrasonic gauge at 1-inch intervals around corrosion area",
+            "Establish 6-foot safety perimeter and don appropriate PPE including respirator for surface preparation",
+            "Remove corrosion products using wire brushing or light sandblasting to achieve SSPC-SP6 surface finish",
+            "Verify surface profile of 2-4 mils using replica tape and ensure surface is dry and contaminate-free",
+            "Apply PNT-ZN-07 zinc-rich coating in two coats: first coat 2-3 mils DFT, second coat 3-4 mils DFT",
+            "Allow 4-hour cure time between coats at ambient temperature >50\u00b0F and <85% relative humidity",
+            "Inspect final coating thickness using magnetic gauge, ensuring total DFT of 5-7 mils minimum",
+            "Document repair location in corrosion monitoring database and schedule 6-month re-inspection"
+        ],
+        "quick_fix": "MEASURE THICKNESS -> CLEAN SURFACE -> SANDBLAST -> APPLY PRIMER -> APPLY TOPCOAT -> CURE"
+    },
+    "03-03-05": {
+        "fault": "Pressure Relief Valve Jam",
+        "severity": "Serious",
+        "description": "Relief valve fails to actuate at set pressure due to mechanical binding of internal components. Presents as abnormally high system pressures exceeding 110% of relief set point without valve opening. Often accompanied by metallic grinding sounds during manual lift testing. Root cause typically involves spring corrosion, seat fouling with process debris, or thermal distortion of valve internals preventing proper disc movement.",
+        "part_code": "VAL-PR-05",
+        "part_name": "Spring-Loaded Pilot Valve",
+        "common_tools": [
+            "Hydraulic Test Pump",
+            "Valve Spring Compressor",
+            "Precision Pressure Gauge",
+            "Lockout/Tagout Kit",
+            "Torque Multiplier"
+        ],
+        "detailed_steps": [
+            "Implement full system isolation and lockout, installing blind flanges upstream and downstream of valve",
+            "Vent valve body pressure to atmosphere through dedicated drain connection using controlled bleed-off",
+            "Disconnect pilot control lines and electrical connections, marking wire positions for reassembly",
+            "Remove valve bonnet using torque multiplier, maintaining 180 ft-lbs on bonnet bolts in cross pattern",
+            "Extract jammed pilot valve assembly using spring compressor tool, inspecting for corrosion or debris",
+            "Install new VAL-PR-05 pilot valve with spring preload set to 1,450 PSI \u00b1 25 PSI per manufacturer specs",
+            "Reassemble valve body ensuring proper gasket seating and bolt torque sequence per API 526 standard",
+            "Conduct bench test using hydraulic test pump, verifying relief actuation at 1,500 PSI \u00b1 3% tolerance"
+        ],
+        "quick_fix": "ISOLATE -> DEPRESSURIZE -> REMOVE BONNET -> REPLACE PILOT -> REASSEMBLE -> BENCH TEST"
+    },
+    "03-01-05": {
+        "fault": "Thermal Expansion Stress Crack",
+        "severity": "Serious",
+        "description": "Longitudinal or circumferential cracking in pipe wall due to excessive thermal stress cycling. Crack typically initiates at stress concentration points such as welds or fittings, presenting as visible surface discontinuities 0.5-3 inches in length. May exhibit slight weeping or pressure loss. Root cause is inadequate accommodation of thermal growth/contraction, often due to failed expansion joints, over-constrained piping, or temperature excursions beyond design limits.",
+        "part_code": "JNT-EX-05",
+        "part_name": "Flexible Expansion Joint",
+        "common_tools": [
+            "Magnetic Particle Inspection Kit",
+            "Pipe Alignment Clamps",
+            "Hydraulic Pipe Cutter",
+            "Welding Equipment",
+            "Expansion Joint Installation Tool"
+        ],
+        "detailed_steps": [
+            "Perform magnetic particle inspection to map full extent of crack propagation and assess criticality",
+            "Calculate thermal movement requirements using formula: \u0394L = \u03b1 \u00d7 L \u00d7 \u0394T where \u03b1 = 6.5 \u00d7 10^-6 in/in/\u00b0F for carbon steel",
+            "Isolate affected pipe section and relieve all internal pressure using approved depressurization procedure",
+            "Cut out damaged pipe section maintaining minimum 6-inch clearance beyond visible crack endpoints",
+            "Install temporary pipe alignment clamps to maintain proper spacing for expansion joint installation",
+            "Position JNT-EX-05 expansion joint ensuring bellows are at neutral position (50% compressed)",
+            "Weld expansion joint flanges to pipe ends using qualified welding procedure per ASME B31.3 code",
+            "Pressure test completed assembly to 1.5x design pressure, monitoring expansion joint movement under thermal cycling"
+        ],
+        "quick_fix": "INSPECT CRACK -> CALCULATE MOVEMENT -> ISOLATE -> CUT PIPE -> INSTALL JOINT -> WELD -> TEST"
+    },
+    "03-02-99": {
+        "fault": "Main Header Longitudinal Split",
+        "severity": "Catastrophic",
+        "description": "Complete through-wall rupture along longitudinal axis of main production header, typically 12-36 inches in length. Presents as catastrophic loss of containment with high-velocity hydrocarbon release, loud roaring sound, and potential fire/explosion hazard. Often preceded by rapid pressure loss and vibration. Root cause is typically brittle fracture due to hydrogen embrittlement, fatigue crack growth, or overpressure event exceeding ultimate tensile strength of pipe material.",
+        "part_code": "PIP-MH-99",
+        "part_name": "24-inch Sectional Pipe",
+        "common_tools": [
+            "Emergency Isolation Tools",
+            "Heavy-Duty Pipe Cutter",
+            "Hydraulic Lifting Equipment",
+            "Welding Habitat Enclosure",
+            "Radiographic Testing Equipment"
+        ],
+        "detailed_steps": [
+            "Execute emergency shutdown procedure activating all upstream isolation valves and emergency depressurization systems",
+            "Establish 500-foot hot zone perimeter with continuous gas monitoring and fire suppression equipment staged",
+            "Verify complete system depressurization to 0 PSIG using multiple pressure measurement points",
+            "Remove damaged pipe section using hydraulic cutting tools, maintaining proper lifting procedures for 24-inch pipe",
+            "Inspect adjacent pipe sections using ultrasonic testing to verify structural integrity within 20-foot radius",
+            "Install new PIP-MH-99 sectional pipe using certified welding procedures with 100% radiographic examination",
+            "Perform hydrostatic test at 1.5x maximum allowable working pressure for minimum 8-hour hold period",
+            "Conduct comprehensive integrity assessment including stress analysis and fatigue life evaluation before return to service"
+        ],
+        "quick_fix": "EMERGENCY SHUTDOWN -> ESTABLISH PERIMETER -> DEPRESSURIZE -> REMOVE SECTION -> INSTALL PIPE -> WELD -> HYDROTEST"
+    }
+}

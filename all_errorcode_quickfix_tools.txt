@@ -1,0 +1,137 @@
+=== engines.json ===
+Error Code: 01-01-07
+Quick Fix: LOCKOUT -> REMOVE HOUSING -> EXTRACT FILTER -> INSTALL NEW ENG-FL-01 -> TORQUE BOLTS -> TEST PRESSURE
+Common Tools:
+- Digital Manometer | Location: NOT FOUND IN tools table
+- Lockout/Tagout Kit | Location: Wall C, Entry Point
+- Filter Housing Wrench Set | Location: NOT FOUND IN tools table
+- Compressed Air Gun | Location: NOT FOUND IN tools table
+- Torque Wrench (50-150 Nm) | Location: NOT FOUND IN tools table
+
+Error Code: 01-02-07
+Quick Fix: LOCKOUT -> REMOVE COILS -> EXTRACT OLD PLUGS -> INSTALL ENG-SP-02 -> TORQUE 30NM -> RECONNECT -> TEST
+Common Tools:
+- Spark Plug Socket Set | Location: NOT FOUND IN tools table
+- Torque Wrench (25-35 Nm) | Location: NOT FOUND IN tools table
+- Feeler Gauge Set | Location: NOT FOUND IN tools table
+- Anti-Seize Compound | Location: NOT FOUND IN tools table
+- Compressed Air Gun | Location: NOT FOUND IN tools table
+
+Error Code: 01-03-05
+Quick Fix: LOCKOUT -> DEPRESSURIZE FUEL -> DISCONNECT LINES -> REPLACE ENG-IN-05 -> RECONNECT -> PRESSURE TEST -> TIMING CHECK
+Common Tools:
+- Fuel System Pressure Tester | Location: NOT FOUND IN tools table
+- Electronic Timing Light | Location: NOT FOUND IN tools table
+- Fuel Line Disconnect Tools | Location: NOT FOUND IN tools table
+- Digital Multimeter | Location: Tech Bench, Bin 1
+- Lockout/Tagout Kit | Location: Wall C, Entry Point
+
+Error Code: 01-01-05
+Quick Fix: LOCKOUT -> DRAIN COOLANT -> REMOVE PUMP -> EXTRACT BEARING -> PRESS NEW BRG-CP-11 -> REASSEMBLE -> TEST FLOW
+Common Tools:
+- Bearing Puller Set | Location: NOT FOUND IN tools table
+- Hydraulic Press | Location: NOT FOUND IN tools table
+- Dial Indicator | Location: NOT FOUND IN tools table
+- Coolant System Flush Kit | Location: NOT FOUND IN tools table
+- Torque Wrench (120-180 Nm) | Location: NOT FOUND IN tools table
+
+Error Code: 01-02-99
+Quick Fix: EMERGENCY SHUTDOWN -> LOCKOUT -> REMOVE HEAD/PAN -> EXTRACT DAMAGED PARTS -> INSTALL ENG-PR-99 -> TORQUE 320NM -> FLUSH OIL -> COMPRESSION TEST
+Common Tools:
+- Engine Hoist (5-ton capacity) | Location: NOT FOUND IN tools table
+- Cylinder Bore Gauge | Location: NOT FOUND IN tools table
+- Plastigage Kit | Location: NOT FOUND IN tools table
+- Ring Compressor Tool | Location: NOT FOUND IN tools table
+- Precision Torque Wrench (200-400 Nm) | Location: NOT FOUND IN tools table
+
+=== pipelines.json ===
+Error Code: 03-01-07
+Quick Fix: LOCKOUT -> DEPRESSURIZE -> REMOVE BOLTS -> REPLACE GASKET -> TORQUE -> PRESSURE TEST
+Common Tools:
+- Digital Torque Wrench | Location: Shelf B, Case 4
+- Lockout/Tagout Kit | Location: Wall C, Entry Point
+- Flange Spreader Tool | Location: NOT FOUND IN tools table
+- Gasket Scraper Set | Location: Cabinet 2, Drawer B
+- Thread Compound Applicator | Location: NOT FOUND IN tools table
+
+Error Code: 03-02-07
+Quick Fix: MEASURE THICKNESS -> CLEAN SURFACE -> SANDBLAST -> APPLY PRIMER -> APPLY TOPCOAT -> CURE
+Common Tools:
+- Ultrasonic Thickness Gauge | Location: NOT FOUND IN tools table
+- Wire Brush Set | Location: NOT FOUND IN tools table
+- Sandblasting Equipment | Location: NOT FOUND IN tools table
+- Surface Profile Gauge | Location: NOT FOUND IN tools table
+- Spray Application Gun | Location: NOT FOUND IN tools table
+
+Error Code: 03-03-05
+Quick Fix: ISOLATE -> DEPRESSURIZE -> REMOVE BONNET -> REPLACE PILOT -> REASSEMBLE -> BENCH TEST
+Common Tools:
+- Hydraulic Test Pump | Location: NOT FOUND IN tools table
+- Valve Spring Compressor | Location: NOT FOUND IN tools table
+- Precision Pressure Gauge | Location: NOT FOUND IN tools table
+- Lockout/Tagout Kit | Location: Wall C, Entry Point
+- Torque Multiplier | Location: NOT FOUND IN tools table
+
+Error Code: 03-01-05
+Quick Fix: INSPECT CRACK -> CALCULATE MOVEMENT -> ISOLATE -> CUT PIPE -> INSTALL JOINT -> WELD -> TEST
+Common Tools:
+- Magnetic Particle Inspection Kit | Location: NOT FOUND IN tools table
+- Pipe Alignment Clamps | Location: NOT FOUND IN tools table
+- Hydraulic Pipe Cutter | Location: NOT FOUND IN tools table
+- Welding Equipment | Location: NOT FOUND IN tools table
+- Expansion Joint Installation Tool | Location: NOT FOUND IN tools table
+
+Error Code: 03-02-99
+Quick Fix: EMERGENCY SHUTDOWN -> ESTABLISH PERIMETER -> DEPRESSURIZE -> REMOVE SECTION -> INSTALL PIPE -> WELD -> HYDROTEST
+Common Tools:
+- Emergency Isolation Tools | Location: NOT FOUND IN tools table
+- Heavy-Duty Pipe Cutter | Location: NOT FOUND IN tools table
+- Hydraulic Lifting Equipment | Location: NOT FOUND IN tools table
+- Welding Habitat Enclosure | Location: NOT FOUND IN tools table
+- Radiographic Testing Equipment | Location: NOT FOUND IN tools table
+
+=== pumps.json ===
+Error Code: 02-01-07
+Quick Fix: LOCKOUT -> DEPRESSURIZE -> REMOVE COVER -> CLEAN FACES -> APPLY GREASE -> REASSEMBLE -> PRESSURE TEST
+Common Tools:
+- Digital Torque Wrench | Location: Shelf B, Case 4
+- Lockout/Tagout Kit | Location: Wall C, Entry Point
+- Grease Gun with Pressure Gauge | Location: Shelf C, Bin 1
+- Seal Face Inspection Mirror | Location: NOT FOUND IN tools table
+- Precision Feeler Gauges | Location: NOT FOUND IN tools table
+
+Error Code: 02-02-07
+Quick Fix: LOCKOUT -> DRAIN -> REMOVE IMPELLER -> BRUSH CLEAN -> WATER FLUSH -> BALANCE CHECK -> REASSEMBLE
+Common Tools:
+- Lockout/Tagout Kit | Location: Wall C, Entry Point
+- Pump Casing Lifting Sling | Location: NOT FOUND IN tools table
+- High-Pressure Water Hose | Location: NOT FOUND IN tools table
+- LED Inspection Light | Location: NOT FOUND IN tools table
+- Non-Sparking Bronze Scraper | Location: NOT FOUND IN tools table
+
+Error Code: 02-03-05
+Quick Fix: LOCKOUT -> LASER SETUP -> MEASURE MISALIGNMENT -> CALCULATE SHIMS -> JACK MOTOR -> INSTALL SHIMS -> RETORQUE
+Common Tools:
+- Laser Alignment Tool | Location: Precision Case, Shelf B
+- Precision Dial Indicators | Location: NOT FOUND IN tools table
+- Hydraulic Jack System | Location: NOT FOUND IN tools table
+- Digital Torque Wrench | Location: Shelf B, Case 4
+- Lockout/Tagout Kit | Location: Wall C, Entry Point
+
+Error Code: 02-01-05
+Quick Fix: LOCKOUT -> REMOVE IMPELLER -> INSPECT DAMAGE -> CLEAN THREADS -> INSTALL HARDENED NUT -> TORQUE -> VERIFY CLEARANCE
+Common Tools:
+- Impeller Puller Set | Location: NOT FOUND IN tools table
+- Torque Multiplier Tool | Location: NOT FOUND IN tools table
+- Thread Locking Compound | Location: NOT FOUND IN tools table
+- Surface Roughness Gauge | Location: NOT FOUND IN tools table
+- Lockout/Tagout Kit | Location: Wall C, Entry Point
+
+Error Code: 02-02-99
+Quick Fix: LOCKOUT -> CRANE DISASSEMBLY -> REMOVE SHAFT -> INSPECT DAMAGE -> MACHINE NEW SHAFT -> PRESS INSTALL -> COMPLETE REBUILD
+Common Tools:
+- Overhead Crane with 5-Ton Capacity | Location: NOT FOUND IN tools table
+- Hydraulic Press Assembly | Location: NOT FOUND IN tools table
+- Shaft Alignment Mandrel | Location: NOT FOUND IN tools table
+- Magnetic Particle Inspection Kit | Location: NOT FOUND IN tools table
+- Precision Measuring Instruments | Location: NOT FOUND IN tools table
