@@ -59,6 +59,28 @@ export interface AlertPayload {
   ws_pushed?: boolean
 }
 
+export interface MaintenanceHistoryEntry {
+  incident_id: string
+  opened_at: string
+  severity: string
+  status: string
+}
+
+export interface MaintenanceInfo {
+  machine_id: string
+  code: string
+  fault_name: string | null
+  occurrence_count: number
+  first_seen: string | null
+  last_seen: string | null
+  avg_interval_hours: number | null
+  priority: 'normal' | 'routine' | 'urgent' | 'critical'
+  next_service_at: string | null
+  recommendation: string
+  recurring: boolean
+  history: MaintenanceHistoryEntry[]
+}
+
 export interface BroadcastRecipient {
   recipient_id: string
   name: string
@@ -106,6 +128,7 @@ export interface SolvePlan {
   technician: Technician & { _routing?: Record<string, unknown> }
   alert: AlertPayload
   broadcast: BroadcastInfo
+  maintenance?: MaintenanceInfo
 }
 
 export interface SolveResponse {

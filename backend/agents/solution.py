@@ -165,6 +165,7 @@ def solve(code: str, machine_id: str, severity: str,
     """
     from agents import alert as alert_agent
     from agents import broadcast as broadcast_agent
+    from agents import maintenance as maint_agent
     from agents import parts as parts_agent
     from agents import technician as tech_agent
     from agents import tools as tools_agent
@@ -205,6 +206,12 @@ def solve(code: str, machine_id: str, severity: str,
         summary=slm_out.get('spoken_alert') or kb_entry.get('fault', 'Fault detected'),
     )
 
+    maintenance_info = maint_agent.analyze_recurrence(
+        code=hyph,
+        machine_id=machine_id,
+        fault_name=kb_entry.get('fault'),
+    )
+
     return {
         'code': hyph,
         'machine_id': machine_id,
@@ -222,4 +229,5 @@ def solve(code: str, machine_id: str, severity: str,
         'technician': assigned_tech,
         'alert': alert_info,
         'broadcast': broadcast_info,
+        'maintenance': maintenance_info,
     }

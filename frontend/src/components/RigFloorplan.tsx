@@ -96,7 +96,9 @@ export function RigFloorplan({ machineId, severity, part, tools }: Props) {
   const center = (key: keyof typeof ROOMS) => {
     const r = ROOMS[key]; return { x: r.x + r.w / 2, y: r.y + r.h / 2 }
   }
-  const faultCenter = fault ? { x: fault.x + fault.w / 2, y: fault.y + fault.h / 2 } : null
+  // Terminate routes at the TOP edge of the machine box (a few px above it)
+  // so arrowheads don't overlap the machine's label text.
+  const faultCenter = fault ? { x: fault.x + fault.w / 2, y: fault.y - 8 } : null
 
   return (
     <div className="card rig-card">

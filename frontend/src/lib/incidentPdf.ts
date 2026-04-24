@@ -35,7 +35,21 @@ function truncate(s: string | null | undefined, n: number): string {
 
 // ------------------------------ builder --------------------------------
 
+export function incidentPdfFilename(inc: Incident): string {
+  return `${inc.incident_id}_flight_recorder.pdf`
+}
+
 export function downloadIncidentPDF(inc: Incident, plan: SolveResponse['plan']) {
+  const doc = buildIncidentPDF(inc, plan)
+  doc.save(incidentPdfFilename(inc))
+}
+
+export function buildIncidentPDFBlob(inc: Incident, plan: SolveResponse['plan']): Blob {
+  const doc = buildIncidentPDF(inc, plan)
+  return doc.output('blob')
+}
+
+function buildIncidentPDF(inc: Incident, plan: SolveResponse['plan']) {
   const doc = new jsPDF({ unit: 'pt', format: 'a4' })
   const pageW = doc.internal.pageSize.getWidth()
   const pageH = doc.internal.pageSize.getHeight()
@@ -291,7 +305,7 @@ export function downloadIncidentPDF(inc: Incident, plan: SolveResponse['plan']) 
     doc.text(`Page ${p} of ${pageCount}`, pageW - margin, pageH - 18, { align: 'right' })
   }
 
-  doc.save(`${inc.incident_id}_flight_recorder.pdf`)
+  return doc
 }
 
 // ---------------------------- helpers ------------------------------------

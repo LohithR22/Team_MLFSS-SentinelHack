@@ -108,3 +108,26 @@ def serve_narration(_request, filename: str):
     if not path.exists():
         raise Http404(f'No audio file {filename!r}')
     return FileResponse(open(path, 'rb'), content_type='audio/aiff')
+
+
+# ---------------------------------------------------------------------------
+# Tool image serving (RigTools_Images/*)
+# ---------------------------------------------------------------------------
+
+_TOOL_IMG_TYPES = {
+    '.jpg': 'image/jpeg',
+    '.jpeg': 'image/jpeg',
+    '.png': 'image/png',
+    '.webp': 'image/webp',
+}
+
+
+def serve_tool_image(_request, filename: str):
+    """Serve images from RigTools_Images/. Path-traversal safe."""
+    if '/' in filename or '\\' in filename or filename.startswith('.'):
+        raise Http404
+    path = settings.TOOL_IMAGES_DIR / filename
+    if not path.exists() or not path.is_file():
+        raise Http404(f'No tool image {filename!r}')
+    ctype = _TOOL_IMG_TYPES.get(path.suffix.lower(), 'application/octet-stream')
+    return FileResponse(open(path, 'rb'), content_type=ctype)
