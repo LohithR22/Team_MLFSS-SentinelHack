@@ -307,19 +307,50 @@ button:disabled { opacity: 0.55; cursor: wait; }
 .pill.no { background: rgba(77, 19, 19, 0.6); border-color: #7a1e1e; color: #ff9aa4; }
 .pill.warn { background: rgba(75, 58, 18, 0.6); border-color: #8a6a12; color: #ffd680; }
 
+/* Tools layout — 2 columns on wide screens, 1 on narrow */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4px 24px;
+}
+@media (max-width: 900px) {
+  .tools-grid { grid-template-columns: 1fr; }
+}
+
 /* Tools rows */
 .tool-row {
   display: flex; gap: 12px; align-items: flex-start;
   padding: 12px 0;
   border-bottom: 1px dashed var(--border);
+  min-width: 0;
 }
 .tool-row:last-child { border-bottom: none; }
+/* In a 2-col grid, the last-of-row items shouldn't lose their dash — only the
+   bottom two should. Easier: keep borders but drop for the final two items
+   using nth-last-child. */
+.tools-grid .tool-row:nth-last-child(-n+2) { border-bottom: none; }
+.tools-grid .tool-row:nth-last-child(1):nth-child(odd) {
+  /* if odd count, the lone last row already has no neighbour — leave as is */
+}
 .tool-type-chip {
   width: 52px; height: 52px; border-radius: 10px;
   border: 1px solid var(--border); background: var(--panel-2);
   display: grid; place-items: center;
   font-size: 10px; color: var(--text-dim); flex-shrink: 0;
   text-transform: uppercase; letter-spacing: 0.04em; font-weight: 600;
+}
+.tool-thumb {
+  width: 62px; height: 62px; border-radius: 10px;
+  object-fit: cover; flex-shrink: 0;
+  border: 1px solid var(--border);
+  background: var(--panel-2);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 200ms, border-color 200ms;
+}
+.tool-thumb:hover {
+  transform: scale(1.04);
+  border-color: var(--accent);
+  box-shadow: 0 4px 16px var(--accent-glow);
 }
 .tool-main { flex: 1; min-width: 0; }
 .tool-name { font-weight: 600; font-size: 14px; color: var(--text); }
@@ -786,6 +817,54 @@ button:disabled { opacity: 0.55; cursor: wait; }
 @keyframes hint-in {
   from { opacity: 0; transform: translateY(4px); }
   to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ───────────────────────── Maintenance Card ───────────────────────── */
+
+.maint-card {
+  background:
+    radial-gradient(ellipse at top right, rgba(247, 181, 0, 0.10), transparent 55%),
+    var(--panel);
+}
+.maint-head {
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 12px; margin-bottom: 10px;
+}
+.maint-head h3 { margin: 0; }
+.maint-priority {
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+.maint-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 12px 0 6px;
+  border-top: 1px dashed var(--border);
+  border-bottom: 1px dashed var(--border);
+  margin-bottom: 14px;
+}
+.maint-stats .big { font-size: 22px; }
+.maint-hist-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.maint-hist { display: flex; flex-direction: column; gap: 6px; }
+.maint-hist-row {
+  display: grid;
+  grid-template-columns: 180px 1fr auto auto;
+  gap: 10px;
+  font-size: 11px;
+  padding: 4px 0;
+  align-items: center;
 }
 
 /* ───────────────────────── Broadcast Card ───────────────────────── */

@@ -1,0 +1,11 @@
+[
+  {
+    "label": "Primary Device",
+    "host": "192.168.45.61",
+    "port": 21,
+    "username": "anonymous",
+    "password": "",
+    "remote_dir": "/",
+    "notify_on": ["catastrophic"]
+  }
+]

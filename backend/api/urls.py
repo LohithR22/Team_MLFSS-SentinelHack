@@ -1,6 +1,6 @@
 from django.urls import path
 
-from . import alert, broadcast, llm, parts, problem, solution, technician, tools
+from . import alert, broadcast, ftp, llm, maintenance, parts, problem, solution, technician, tools
 
 urlpatterns = [
     # Parts Agent
@@ -37,4 +37,11 @@ urlpatterns = [
     # Broadcast Agent — escalation fan-out
     path('broadcast/recipients/',                    broadcast.recipients, name='broadcast_recipients'),
     path('broadcast/dispatch/',                      broadcast.dispatch,   name='broadcast_dispatch'),
+
+    # Maintenance Agent — recurring-fault schedule
+    path('maintenance/schedule/',                    maintenance.schedule, name='maintenance_schedule'),
+
+    # FTP Delivery Agent — ship Black Box report to LAN devices
+    path('ftp/targets/',                             ftp.targets,          name='ftp_targets'),
+    path('ftp/send-report/',                         ftp.send_report,      name='ftp_send_report'),
 ]

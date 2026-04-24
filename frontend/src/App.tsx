@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
 import { api } from './api'
 import { BroadcastCard } from './components/BroadcastCard'
+import { MaintenanceCard } from './components/MaintenanceCard'
 import { PipelineProgress } from './components/PipelineProgress'
 import { RigFloorplan } from './components/RigFloorplan'
 import { TelemetryChart } from './components/TelemetryChart'
 import { useAlertStream } from './hooks/useAlertStream'
-import { downloadIncidentPDF } from './lib/incidentPdf'
+import { buildIncidentPDFBlob, downloadIncidentPDF, incidentPdfFilename } from './lib/incidentPdf'
 import type { AlertPayload, Incident, IncidentLog, Scenario, SolveResponse } from './types'
 
 function sevClass(s: string) {
@@ -214,33 +215,53 @@ function ToolsCard({ tools }: { tools: SolveResponse['plan']['tools'] }) {
   return (
     <div className="card">
       <h3>Tools Needed · {tools.length}</h3>
-      {tools.map((t, i) => (
-        <div className="tool-row" key={i}>
-          <div className="tool-type-chip">{t.type ?? '—'}</div>
-          <div className="tool-main">
-            <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8 }}>
-              <span className="tool-name">{t.tool_name}</span>
-              {t.found_in_room_8 ? (
-                <span className="pill ok">in inventory</span>
-              ) : (
-                <span className="pill no">procure</span>
+      <div className="tools-grid">
+      {tools.map((t, i) => {
+        const imgUrl = t.image_basename ? `/api/tool-image/${encodeURIComponent(t.image_basename)}` : null
+        return (
+          <div className="tool-row" key={i}>
+            {imgUrl ? (
+              <img
+                className="tool-thumb"
+                src={imgUrl}
+                alt={t.tool_name}
+                loading="lazy"
+                onError={(e) => {
+                  (e.currentTarget as HTMLImageElement).style.display = 'none'
+                  const chip = e.currentTarget.nextElementSibling as HTMLElement | null
+                  if (chip) chip.style.display = 'grid'
+                }}
+              />
+            ) : null}
+            <div className="tool-type-chip" style={{ display: imgUrl ? 'none' : 'grid' }}>
+              {t.type ?? '—'}
+            </div>
+            <div className="tool-main">
+              <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8 }}>
+                <span className="tool-name">{t.tool_name}</span>
+                {t.found_in_room_8 ? (
+                  <span className="pill ok">in inventory</span>
+                ) : (
+                  <span className="pill no">procure</span>
+                )}
+              </div>
+              <div className="tool-loc">
+                {t.location ?? 'Not in inventory'}
+                {t.primary_use && (
+                  <>
+                    {' · '}
+                    <em style={{ color: 'var(--text-dim)' }}>{t.primary_use}</em>
+                  </>
+                )}
+              </div>
+              {t.visual_description && (
+                <div className="tool-desc">{t.visual_description}</div>
               )}
             </div>
-            <div className="tool-loc">
-              {t.location ?? 'Not in inventory'}
-              {t.primary_use && (
-                <>
-                  {' · '}
-                  <em style={{ color: 'var(--text-dim)' }}>{t.primary_use}</em>
-                </>
-              )}
-            </div>
-            {t.visual_description && (
-              <div className="tool-desc">{t.visual_description}</div>
-            )}
           </div>
-        </div>
-      ))}
+        )
+      })}
+      </div>
     </div>
   )
 }
@@ -284,6 +305,81 @@ function useIncident(id: string | null) {
     api.incident(id).then(setInc).catch(e => setErr(String(e)))
   }, [id])
   return { inc, err }
+}
+
+interface FtpResult {
+  label: string
+  host: string
+  port: number
+  remote_path: string
+  ok: boolean
+  error: string | null
+  bytes: number
+}
+
+function FtpSendButton({ inc, plan }: { inc: Incident; plan: SolveResponse['plan'] }) {
+  const [status, setStatus] = useState<'idle' | 'sending' | 'done' | 'error'>('idle')
+  const [last, setLast] = useState<{ delivered: number; failed: number; results: FtpResult[] } | null>(null)
+
+  const send = async () => {
+    setStatus('sending'); setLast(null)
+    try {
+      const blob = buildIncidentPDFBlob(inc, plan)
+      const form = new FormData()
+      form.append('file', blob, incidentPdfFilename(inc))
+      form.append('severity', plan.severity)
+      form.append('incident_id', inc.incident_id)
+      form.append('code', plan.code)
+      form.append('machine_id', plan.machine_id)
+
+      const r = await fetch('/api/ftp/send-report/', { method: 'POST', body: form })
+      const j = await r.json()
+      if (!r.ok) throw new Error(j.error || `HTTP ${r.status}`)
+      setLast({ delivered: j.delivered, failed: j.failed, results: j.results })
+      setStatus(j.failed === 0 && j.delivered > 0 ? 'done' : 'error')
+    } catch (e) {
+      setStatus('error')
+      setLast({ delivered: 0, failed: 1, results: [{
+        label: 'error', host: '-', port: 0, remote_path: '-', ok: false,
+        error: String(e), bytes: 0,
+      }] })
+    }
+  }
+
+  const label =
+    status === 'sending' ? 'Sending…' :
+    status === 'done'    ? `✓ Sent (${last?.delivered})` :
+    status === 'error'   ? `⚠ ${last?.failed ?? 1} failed` :
+                           '📡 FTP Send'
+
+  const bg =
+    status === 'done'  ? 'linear-gradient(135deg, var(--ok), #1e9160)' :
+    status === 'error' ? 'linear-gradient(135deg, var(--danger), #8a1e26)' :
+                         'linear-gradient(135deg, var(--cyan), var(--accent))'
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 4 }}>
+      <button
+        onClick={send}
+        disabled={status === 'sending'}
+        title={last ? last.results.map(r => `${r.label} @ ${r.host}: ${r.ok ? 'ok' : r.error}`).join('\n') : 'Push PDF to LAN device(s) via FTP'}
+        style={{ background: bg, color: '#fff', border: 'none', fontWeight: 600,
+                 padding: '8px 14px', borderRadius: 8,
+                 boxShadow: '0 4px 16px rgba(76, 141, 255, 0.35)' }}
+      >
+        {label}
+      </button>
+      {last && last.failed > 0 && (
+        <div style={{ fontSize: 11, color: 'var(--danger)', fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', maxWidth: 420, textAlign: 'right' }}>
+          {last.results.filter(r => !r.ok).map((r, i) => (
+            <div key={i} title={r.error ?? ''}>
+              {r.label} @ {r.host}:{r.port} — {r.error}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  )
 }
 
 function prettyJson(s: string | null | undefined): string {
@@ -343,13 +439,16 @@ function IncidentReplay({
       <div className="blackbox-head">
         <h3>Black Box Replay · {inc.incident_id}</h3>
         {plan && (
-          <button
-            className="primary"
-            onClick={() => downloadIncidentPDF(inc, plan)}
-            title="Download flight recorder report as PDF"
-          >
-            ↓ Download PDF
-          </button>
+          <div style={{ display: 'flex', gap: 8 }}>
+            <FtpSendButton inc={inc} plan={plan} />
+            <button
+              className="primary"
+              onClick={() => downloadIncidentPDF(inc, plan)}
+              title="Download flight recorder report as PDF"
+            >
+              ↓ Download PDF
+            </button>
+          </div>
         )}
       </div>
 
@@ -485,6 +584,7 @@ export default function App() {
             </div>
             <ToolsCard tools={plan.plan.tools} />
             {plan.plan.broadcast && <BroadcastCard broadcast={plan.plan.broadcast} />}
+            {plan.plan.maintenance && <MaintenanceCard maintenance={plan.plan.maintenance} />}
             <ProcedureCard kb={plan.plan.kb} />
             <IncidentReplay inc={inc} err={incErr} plan={plan.plan} />
           </div>

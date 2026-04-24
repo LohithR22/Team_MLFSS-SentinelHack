@@ -10,4 +10,7 @@ urlpatterns = [
 
     # Live-generated alert audio
     path('audio/narration/<str:filename>', views.serve_narration, name='serve_narration'),
+
+    # Tool images (from RigTools_Images/)
+    path('tool-image/<str:filename>', views.serve_tool_image, name='serve_tool_image'),
 ]
