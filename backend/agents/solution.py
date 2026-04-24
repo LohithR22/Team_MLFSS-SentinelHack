@@ -164,6 +164,7 @@ def solve(code: str, machine_id: str, severity: str,
     Calls every downstream agent, returning a complete bundle for the UI.
     """
     from agents import alert as alert_agent
+    from agents import broadcast as broadcast_agent
     from agents import parts as parts_agent
     from agents import technician as tech_agent
     from agents import tools as tools_agent
@@ -197,6 +198,13 @@ def solve(code: str, machine_id: str, severity: str,
         quick_fix=kb_entry.get('quick_fix'),
     )
 
+    broadcast_info = broadcast_agent.dispatch(
+        severity=severity,
+        code=hyph,
+        machine_id=machine_id,
+        summary=slm_out.get('spoken_alert') or kb_entry.get('fault', 'Fault detected'),
+    )
+
     return {
         'code': hyph,
         'machine_id': machine_id,
@@ -213,4 +221,5 @@ def solve(code: str, machine_id: str, severity: str,
         'tools': tools_info,
         'technician': assigned_tech,
         'alert': alert_info,
+        'broadcast': broadcast_info,
     }

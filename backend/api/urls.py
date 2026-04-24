@@ -1,6 +1,6 @@
 from django.urls import path
 
-from . import alert, llm, parts, problem, solution, technician, tools
+from . import alert, broadcast, llm, parts, problem, solution, technician, tools
 
 urlpatterns = [
     # Parts Agent
@@ -33,4 +33,8 @@ urlpatterns = [
 
     # Solution Agent — end-to-end orchestrator
     path('solve/',                                   solution.solve,       name='solve'),
+
+    # Broadcast Agent — escalation fan-out
+    path('broadcast/recipients/',                    broadcast.recipients, name='broadcast_recipients'),
+    path('broadcast/dispatch/',                      broadcast.dispatch,   name='broadcast_dispatch'),
 ]

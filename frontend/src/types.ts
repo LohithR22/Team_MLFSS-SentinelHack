@@ -59,6 +59,31 @@ export interface AlertPayload {
   ws_pushed?: boolean
 }
 
+export interface BroadcastRecipient {
+  recipient_id: string
+  name: string
+  title: string
+  tier: 'supervisor' | 'operations' | 'safety' | 'executive' | 'emergency'
+  shift: string | null
+  contact_phone: string | null
+  contact_email: string | null
+  radio_channel: string | null
+  channels: string[]
+  delivered: boolean
+}
+
+export interface BroadcastInfo {
+  incident_id: string | null
+  severity: Severity
+  code: string
+  machine_id: string
+  current_shift: string
+  summary: string
+  recipient_count: number
+  tier_counts: Record<string, number>
+  recipients: BroadcastRecipient[]
+}
+
 export interface SolvePlan {
   code: string
   machine_id: string
@@ -80,6 +105,7 @@ export interface SolvePlan {
   tools: ToolInfo[]
   technician: Technician & { _routing?: Record<string, unknown> }
   alert: AlertPayload
+  broadcast: BroadcastInfo
 }
 
 export interface SolveResponse {

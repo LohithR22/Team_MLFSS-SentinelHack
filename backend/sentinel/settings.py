@@ -83,6 +83,11 @@ DATABASES = {
         'NAME': REPO_ROOT / 'technicians.db',
         'OPTIONS': {'init_command': 'PRAGMA query_only = ON;'},
     },
+    'broadcast': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': REPO_ROOT / 'broadcast.db',
+        'OPTIONS': {'init_command': 'PRAGMA query_only = ON;'},
+    },
 }
 
 # Paths to team artifacts

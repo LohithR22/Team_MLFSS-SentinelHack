@@ -105,22 +105,62 @@ def _abbreviate_quick_fix(qf: str, max_steps: int = 3) -> str:
     return f'{head} plus {len(steps) - max_steps} more'
 
 
-def _enrich_spoken(base_text: str, part: dict | None, tools: list | None,
-                   technician: dict | None, quick_fix: str | None = None) -> str:
-    """Append concise part / tools / technician / procedure info to the PA announcement."""
-    extras: list[str] = []
+def _build_structured_alert(
+    severity: str,
+    machine_id: str | None,
+    part: dict | None,
+    tools: list | None,
+    technician: dict | None,
+    quick_fix: str | None,
+) -> str:
+    """Build the announcement in a deterministic, audit-friendly order:
+        1. Severity of failure
+        2. Location of failure (which machine)
+        3. Technician assignment
+        4. Fixing procedure (abbreviated quick fix)
+        5. Replacement part details
+        6. Tools required
+    """
+    pieces: list[str] = []
 
+    # 1. Severity + 2. Location of failure
+    machine = machine_id or 'an unknown machine'
+    sev_phrase = {
+        'Catastrophic': 'Catastrophic failure',
+        'Serious':      'Serious fault',
+        'Maintenance':  'Maintenance required',
+    }.get(severity, f'{severity} fault')
+    pieces.append(f'{sev_phrase} on {machine}.')
+
+    # 3. Technician
+    if technician:
+        name = technician.get('name', 'technician')
+        role = technician.get('role', '').lower() or 'technician'
+        radio = technician.get('radio_channel')
+        piece = f'Assigned to {role} {name}'
+        if radio:
+            piece += f', radio {radio}'
+        pieces.append(piece + '.')
+
+    # 4. Fixing procedure
+    if quick_fix:
+        abbrev = _abbreviate_quick_fix(quick_fix)
+        if abbrev:
+            pieces.append(f'Procedure: {abbrev}. Full steps on screen.')
+
+    # 5. Replacement part
     if part:
         avail = part.get('availability')
         pname = part.get('part_name') or part.get('part_code')
         loc = part.get('location') or 'storage'
         if avail == 'Yes':
-            extras.append(f'Replacement part {pname} available at {loc}.')
+            pieces.append(f'Replacement part {pname} available at {loc}.')
         elif avail == 'No':
-            extras.append(f'Replacement part {pname} is out of stock; escalation required.')
+            pieces.append(f'Replacement part {pname} is out of stock; escalation required.')
         else:
-            extras.append(f'Replacement part {pname} at {loc}.')
+            pieces.append(f'Replacement part {pname} at {loc}.')
 
+    # 6. Tools
     if tools:
         found = [t for t in tools if t.get('found_in_room_8')]
         missing = [t for t in tools if not t.get('found_in_room_8')]
@@ -134,28 +174,12 @@ def _enrich_spoken(base_text: str, part: dict | None, tools: list | None,
             names_part = ', '.join(names) if names else ''
             rooms_part = (' — ' + ', '.join(sorted(rooms))) if rooms else ''
             if names_part:
-                extras.append(f'Tools needed: {names_part}{rooms_part}.')
+                pieces.append(f'Tools needed: {names_part}{rooms_part}.')
         if missing:
             miss_names = ', '.join(t.get('tool_name', '?') for t in missing)
-            extras.append(f'Also procure: {miss_names}.')
+            pieces.append(f'Also procure: {miss_names}.')
 
-    if technician:
-        name = technician.get('name', 'technician')
-        role = technician.get('role', '').lower()
-        radio = technician.get('radio_channel')
-        piece = f'{role.title()} {name} assigned'
-        if radio:
-            piece += f', radio {radio}'
-        extras.append(piece + '.')
-
-    if quick_fix:
-        abbrev = _abbreviate_quick_fix(quick_fix)
-        if abbrev:
-            extras.append(f'Procedure: {abbrev}. Full steps on screen.')
-
-    if not extras:
-        return base_text
-    return base_text.rstrip('. ') + '. ' + ' '.join(extras)
+    return ' '.join(pieces)
 
 
 def _push_to_websocket(payload: dict) -> bool:
@@ -243,7 +267,16 @@ def trigger(
     """
     hyph = _normalize_code(code)
     base_text = spoken_alert or _build_default_text(hyph, severity, machine_id)
-    enriched_text = _enrich_spoken(base_text, part, tools, technician, quick_fix)
+
+    # If we have ANY structured context, build the announcement deterministically
+    # in the required order (severity -> location -> tech -> procedure -> part -> tools).
+    # Otherwise fall back to the SLM's raw text.
+    if part or tools or technician or quick_fix:
+        enriched_text = _build_structured_alert(
+            severity, machine_id, part, tools, technician, quick_fix,
+        )
+    else:
+        enriched_text = base_text
 
     audio = _synthesize(enriched_text, hyph)
     audio_url = f'/api/audio/narration/{audio.name}' if audio else None
