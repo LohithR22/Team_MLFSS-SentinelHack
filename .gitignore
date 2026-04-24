@@ -1,1 +1,17 @@
-.venv/backend/runtime_audio/
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Django runtime state
+backend/runtime_state.db
+backend/runtime_audio/
+
+# Node / frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# OS
+.DS_Store
