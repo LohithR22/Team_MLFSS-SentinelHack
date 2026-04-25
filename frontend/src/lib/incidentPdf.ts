@@ -179,41 +179,6 @@ function buildIncidentPDF(inc: Incident, plan: SolveResponse['plan']) {
   })
   y = (doc as any).lastAutoTable.finalY
 
-  // ---------- Broadcast chain ----------
-  const bc = plan.broadcast
-  y = section(doc, y + 12, margin, pageW, 'Escalation Broadcast Chain')
-  if (!bc || bc.recipient_count === 0) {
-    doc.setFont('helvetica', 'italic')
-    doc.setFontSize(9)
-    doc.setTextColor(...COL.muted)
-    doc.text('Maintenance-severity fault — no escalation beyond the assigned technician.',
-             margin + 6, y + 10)
-    y += 18
-  } else {
-    autoTable(doc, {
-      startY: y + 4,
-      head: [['#', 'Tier', 'Name', 'Title', 'Contact', 'Channels']],
-      body: bc.recipients.map((r, i) => [
-        String(i + 1),
-        r.tier.toUpperCase(),
-        r.name,
-        truncate(r.title, 30),
-        [r.contact_phone, r.contact_email, r.radio_channel].filter(Boolean).join('  ·  ') || '—',
-        r.channels.map(c => c.toUpperCase()).join(', '),
-      ]),
-      theme: 'grid',
-      styles: { font: 'helvetica', fontSize: 8.5, cellPadding: 4, textColor: COL.text },
-      headStyles: { fillColor: COL.magenta, textColor: [255, 255, 255], fontStyle: 'bold' },
-      alternateRowStyles: { fillColor: COL.panel },
-      columnStyles: {
-        0: { cellWidth: 22 },
-        1: { cellWidth: 70, fontStyle: 'bold', textColor: COL.magenta },
-        5: { font: 'courier', fontSize: 7.5 },
-      },
-      margin: { left: margin, right: margin },
-    })
-    y = (doc as any).lastAutoTable.finalY
-  }
 
   // ---------- Detailed steps ----------
   y = section(doc, y + 12, margin, pageW, 'Detailed Repair Steps')

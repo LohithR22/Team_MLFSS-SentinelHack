@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { api } from './api'
-import { BroadcastCard } from './components/BroadcastCard'
 import { MaintenanceCard } from './components/MaintenanceCard'
 import { PipelineProgress } from './components/PipelineProgress'
 import { RigFloorplan } from './components/RigFloorplan'
@@ -583,7 +582,6 @@ export default function App() {
               <TechnicianCard technician={plan.plan.technician} />
             </div>
             <ToolsCard tools={plan.plan.tools} />
-            {plan.plan.broadcast && <BroadcastCard broadcast={plan.plan.broadcast} />}
             {plan.plan.maintenance && <MaintenanceCard maintenance={plan.plan.maintenance} />}
             <ProcedureCard kb={plan.plan.kb} />
             <IncidentReplay inc={inc} err={incErr} plan={plan.plan} />
