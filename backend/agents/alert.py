@@ -142,7 +142,7 @@ def _build_structured_alert(
             piece += f', radio {radio}'
         pieces.append(piece + '.')
 
-    # 4. Fixing procedure
+    # 4. Fixing procedure (said once here as part of the alert flow)
     if quick_fix:
         abbrev = _abbreviate_quick_fix(quick_fix)
         if abbrev:
@@ -178,6 +178,15 @@ def _build_structured_alert(
         if missing:
             miss_names = ', '.join(t.get('tool_name', '?') for t in missing)
             pieces.append(f'Also procure: {miss_names}.')
+
+    # End-of-alert tail: repeat the procedure 3 more times for emphasis,
+    # only after the full alert has played once.
+    if quick_fix:
+        abbrev = _abbreviate_quick_fix(quick_fix)
+        if abbrev:
+            tail = f'Procedure: {abbrev}.'
+            for _ in range(3):
+                pieces.append(tail)
 
     return ' '.join(pieces)
 

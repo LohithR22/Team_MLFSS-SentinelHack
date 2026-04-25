@@ -18,17 +18,22 @@ interface Props {
   tools: ToolEntry[]
 }
 
-// Machine layout in the SVG (x, y, w, h)
+// Machine layout in the SVG (x, y, w, h). Positioned relative to each room
+// so gaps are equal and all rows are centered.
+//
+//   Engine Room  {x:20,  w:260}  center=150   ENG-01/02 pair (78w, 14gap), ENG-03 centered below
+//   Pump Room    {x:285, w:210}  center=390   PUM-01/02 pair, PUM-03 below
+//   Pipeline     {x:530, w:250}  center=655   PL-01/02/03 in a row (70w, 14gap)
 const MACHINES: Record<string, { x: number; y: number; w: number; h: number }> = {
-  'ENG-01': { x:  40, y:  72, w: 78, h: 52 },
-  'ENG-02': { x: 130, y:  72, w: 78, h: 52 },
-  'ENG-03': { x:  85, y: 138, w: 78, h: 52 },
-  'PUM-01': { x: 300, y:  72, w: 78, h: 52 },
-  'PUM-02': { x: 390, y:  72, w: 78, h: 52 },
-  'PUM-03': { x: 345, y: 138, w: 78, h: 52 },
-  'PL-01':  { x: 548, y:  72, w: 70, h: 52 },
-  'PL-02':  { x: 624, y:  72, w: 70, h: 52 },
-  'PL-03':  { x: 700, y:  72, w: 70, h: 52 },
+  'ENG-01': { x:  65, y:  72, w: 78, h: 52 },
+  'ENG-02': { x: 157, y:  72, w: 78, h: 52 },
+  'ENG-03': { x: 111, y: 138, w: 78, h: 52 },
+  'PUM-01': { x: 305, y:  72, w: 78, h: 52 },
+  'PUM-02': { x: 397, y:  72, w: 78, h: 52 },
+  'PUM-03': { x: 351, y: 138, w: 78, h: 52 },
+  'PL-01':  { x: 536, y:  72, w: 70, h: 52 },
+  'PL-02':  { x: 620, y:  72, w: 70, h: 52 },
+  'PL-03':  { x: 704, y:  72, w: 70, h: 52 },
 }
 
 const ROOMS = {
